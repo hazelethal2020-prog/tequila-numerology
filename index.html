@@ -322,7 +322,7 @@ select,input[type=number],input[type=text]{height:46px;font-size:16px;border:1px
 
 /* 彩蛋與頁尾 */
 .cheers{position:relative;align-self:center;background:none;border:0;color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 16px;text-align:center;font-size:15px;line-height:1.5;letter-spacing:.06em}
-.cheers .glasses{width:132px;height:auto;overflow:visible}
+.cheers .glasses{width:156px;height:auto;overflow:visible}
 .cheers:not(.on) .glasses{animation:sway 4s ease-in-out infinite}
 .gl{transform-box:fill-box;transform-origin:50% 100%}
 .cheers.on .gl{animation:clink 1.1s cubic-bezier(.3,.7,.3,1)}
@@ -331,6 +331,7 @@ select,input[type=number],input[type=text]{height:46px;font-size:16px;border:1px
 .ding{position:absolute;top:2px;left:50%;transform:translateX(-50%);font-family:var(--mark);font-size:26px;color:var(--gold);opacity:0;pointer-events:none}
 .cheers.on .ding{animation:ding 1.1s .34s ease-out both}
 .pt{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--gold);pointer-events:none}
+.salt{position:absolute;width:4px;height:4px;border-radius:1px;background:#fbf7ef;box-shadow:0 0 3px rgba(255,255,255,.6);pointer-events:none}
 @keyframes sway{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
 @keyframes clink{0%{transform:none}35%{transform:translate(12px,-4px) rotate(14deg)}48%{transform:translate(8px,-2px) rotate(8deg)}60%{transform:translate(12px,-4px) rotate(13deg)}100%{transform:none}}
 @keyframes spark{0%{opacity:0;transform:scale(.2)}30%{opacity:1;transform:scale(1.3)}100%{opacity:0;transform:scale(1.8) rotate(45deg)}}
@@ -451,6 +452,22 @@ input,select{scroll-margin:120px 0 160px}
 .pairres .pname{font-size:16px}.pairres .pname small{display:block;font-size:12.5px;color:var(--muted);font-weight:500}
 .pairres .heart{font-size:30px;color:var(--gold2)}
 .ptitle{font-size:26px;font-weight:900;color:var(--plum);line-height:1.3}
+.ebk{margin-top:6px;display:flex;flex-direction:column;gap:10px;align-items:stretch;padding:16px;border-radius:18px;background:linear-gradient(160deg,#3d2346,#2d1932);color:#f5ecd9;box-shadow:0 8px 20px rgba(45,25,50,.25)}
+.ebk .ebt b{display:block;font-size:17px;color:var(--gold);letter-spacing:.06em}.ebk .ebt small{font-size:13px;color:#c4b4c8}
+.ebbtn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;border:0;border-radius:999px;font:inherit;font-weight:900;font-size:16px;color:#2d1932;background:linear-gradient(180deg,#f3d58a,#e2b04c);box-shadow:0 3px 0 #a87d2a;cursor:pointer}
+.ebbtn[disabled]{opacity:.6}.ebk .dlmsg{color:#f5ecd9;margin:0;min-height:0}.ebk .dlmsg:empty{display:none}
+.numtabs{display:grid;grid-template-columns:repeat(9,1fr);gap:6px;margin:6px 0 12px}
+.numtabs button{min-width:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:58px;padding:4px 0;border:1.5px solid #ddd3c3;border-radius:14px;background:#fff;color:#2d1932;transition:transform .15s,box-shadow .2s}
+.numtabs button b{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--c);color:var(--fg);font-size:16px;font-weight:900;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+.numtabs button i{font-style:normal;font-size:11.5px;font-weight:800;color:#b07f1c;line-height:1}
+.numtabs button[aria-selected=true]{border-color:#2d1932;background:#2d1932;transform:translateY(-2px);box-shadow:0 6px 14px rgba(45,25,50,.25)}
+.numtabs button[aria-selected=true] i{color:var(--gold)}
+.mtc{border-radius:18px;background:#fff;border:1px solid var(--line);border-top:5px solid var(--c);padding:16px;display:flex;flex-direction:column;gap:10px;box-shadow:0 4px 14px rgba(45,25,50,.08)}
+.mth{display:flex;align-items:center;gap:12px}.mth .porbs{flex:none}.mth small{display:block;font-size:12.5px;color:var(--muted);font-weight:700}
+.mth b{display:block;font-size:20px;font-weight:900}.mth .st{color:#d39a2a;font-size:15px;letter-spacing:2px}
+.mtc>p{font-size:14.5px;line-height:1.75}
+.mtip .ti{flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--c);color:var(--fg);font-weight:900;font-size:15px}
+.mtip{display:flex;gap:10px;align-items:flex-start;background:#faf6ee;border-radius:14px;padding:12px}.mtip p{font-size:14px;line-height:1.7;margin-top:2px}
 .meter{display:flex;align-items:center;gap:10px;margin-top:2px}
 .meter .st{color:#d39a2a;font-size:18px;letter-spacing:2px}
 .meter .bar{width:120px;height:8px;border-radius:5px;background:#e8e0d3;overflow:hidden}
@@ -697,16 +714,25 @@ input,select{scroll-margin:120px 0 160px}
 
 <button type="button" class="cheers" id="cheers">
   <span class="ding" aria-hidden="true">叮！</span>
-  <svg class="glasses" viewBox="0 0 120 72" aria-hidden="true">
+  <svg class="glasses" viewBox="0 0 140 84" aria-hidden="true">
     <defs>
       <g id="shot">
-        <path d="M15.2 26H42.8L39 58Q38.6 62 34.6 62H23.4Q19.4 62 19 58Z" fill="#eac063" fill-opacity=".9"/>
-        <path d="M14 14H44L39 58Q38.6 62 34.6 62H23.4Q19.4 62 19 58Z" fill="rgba(245,236,217,.08)" stroke="#f5ecd9" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M20.6 32H47.4L44.7 60H23.3Z" fill="#eac063" fill-opacity=".92"/>
+        <ellipse cx="34" cy="32" rx="13.4" ry="1.5" fill="#f7dc93"/>
+        <path d="M23.3 60H44.7L44 70H24Z" fill="rgba(245,236,217,.28)"/>
+        <path d="M18 14H50L44 72H24Z" fill="rgba(245,236,217,.08)" stroke="#f5ecd9" stroke-width="2.2" stroke-linejoin="round"/>
+        <path d="M24.6 60.6H43.4" stroke="rgba(255,255,255,.55)" stroke-width="1.2"/>
+        <path d="M22.4 19 25.6 56" stroke="rgba(255,255,255,.4)" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M17.4 12.6H50.6L49.9 19.2H18.1Z" fill="#fbf7ef"/>
+        <g fill="#fbf7ef"><circle cx="19.5" cy="20.4" r="1.1"/><circle cx="23" cy="20.9" r=".9"/><circle cx="27.5" cy="20.2" r="1.2"/><circle cx="31" cy="21" r=".8"/><circle cx="35" cy="20.5" r="1.1"/><circle cx="39.5" cy="21" r=".9"/><circle cx="43.5" cy="20.3" r="1.2"/><circle cx="47.6" cy="20.8" r=".9"/></g>
+        <g fill="#d9d2c4"><rect x="21" y="14.4" width="1.4" height="1.4" transform="rotate(20 21.7 15.1)"/><rect x="29" y="15.6" width="1.2" height="1.2"/><rect x="37" y="14.6" width="1.4" height="1.4" transform="rotate(35 37.7 15.3)"/><rect x="45" y="15.4" width="1.2" height="1.2"/></g>
       </g>
     </defs>
-    <g><g class="gl"><use href="#shot"/></g></g>
-    <g transform="translate(120 0) scale(-1 1)"><g class="gl"><use href="#shot"/></g></g>
-    <path class="spark" d="M60 6 62.6 17.4 74 20 62.6 22.6 60 34 57.4 22.6 46 20 57.4 17.4Z" fill="#eac063"/>
+    <g><g class="gl"><use href="#shot"/>
+      <g class="lime" transform="translate(16 16) rotate(-28)"><path d="M-12 0A12 12 0 0 1 12 0Z" fill="#5c9a2c"/><path d="M-10 0A10 10 0 0 1 10 0Z" fill="#d5ec8e"/><g stroke="#f4fbd9" stroke-width=".9"><path d="M0 0V-9.2"/><path d="M0 0L-6.6-6.4"/><path d="M0 0L6.6-6.4"/><path d="M0 0L-9-2.4"/><path d="M0 0L9-2.4"/></g><circle r="1.3" fill="#f4fbd9"/></g>
+    </g></g>
+    <g transform="translate(140 0) scale(-1 1)"><g class="gl"><use href="#shot"/></g></g>
+    <path class="spark" d="M70 2 72.6 13.4 84 16 72.6 18.6 70 30 67.4 18.6 56 16 67.4 13.4Z" fill="#eac063"/>
   </svg>
   <span id="ctext">數字說了算，酒友們<br>乾一杯</span>
 </button>
@@ -1546,6 +1572,202 @@ function bizBack2(x,d){const T=BT();
 }
 
 
+/* ---------- 流年電子書（A5 直式 PDF） ---------- */
+const EW=1240,EH=1754;
+function wrapLines(x,t,maxW){const out=[];let line='';const noStart='，。、；：！？」』）…—';
+  for(const ch of [...t]){if(ch==='\n'){out.push(line);line='';continue;}const tryL=line+ch;
+    if(x.measureText(tryL).width>maxW&&line){if(noStart.includes(ch)){line=tryL;continue;}out.push(line);line=ch;}else line=tryL;}
+  if(line)out.push(line);return out;}
+function para(x,t,X,Y,maxW,fs,lh,col,weight=400,font=SANS){x.font=`${weight} ${fs}px ${font}`;x.fillStyle=col;x.textAlign='left';x.textBaseline='alphabetic';const L=wrapLines(x,t,maxW);L.forEach((l,i)=>x.fillText(l,X,Y+i*fs*lh));return Y+L.length*fs*lh;}
+function ebBg(x,dark){
+  if(dark){const g=x.createRadialGradient(EW*.5,EH*.38,60,EW*.5,EH*.45,EH*.8);g.addColorStop(0,'#3a2142');g.addColorStop(1,'#170b1c');x.fillStyle=g;}else x.fillStyle='#f6f1e7';
+  x.fillRect(0,0,EW,EH);const r=rng(7+(dark?1:0));for(let i=0;i<9000;i++){x.fillStyle=`rgba(${dark?'255,230,180':'80,60,50'},${.02+r()*.05})`;x.fillRect(r()*EW,r()*EH,1.4,1.4);}
+}
+function ebHead(x,y,title,pg){
+  x.fillStyle='#9a6f1f';x.font=`600 26px ${SERIF}`;x.textAlign='left';spacing(x,4);x.fillText(`${y} PERSONAL YEAR`,96,110);spacing(x,0);
+  x.textAlign='right';x.fillStyle='#7a6a7e';x.font=`600 26px ${SERIF}`;x.fillText(String(pg).padStart(2,'0'),EW-96,110);
+  x.strokeStyle='rgba(154,111,31,.45)';x.lineWidth=2;x.beginPath();x.moveTo(96,132);x.lineTo(EW-96,132);x.stroke();
+  x.textAlign='left';x.fillStyle='#2d1932';x.font=`900 64px ${SANS}`;x.fillText(title,96,226);
+}
+function ebFoot(x){x.textAlign='center';x.fillStyle='#9a8c9c';x.font=`500 20px ${SANS}`;x.fillText('Tequila 烈酒系塔羅師・僅供自我覺察與娛樂參考',EW/2,EH-60);}
+function ebCover(x,y,py){
+  ebBg(x,true);const L=LUCK[py],C=py===9?'#d9a441':L.hex;
+  starDust2(x);
+  x.save();x.translate(0,0);
+  const cx=EW/2,cy=760,R=250;
+  // 軌道
+  [[480,170,-.3,.4],[400,380,.5,.25]].forEach(([rx,ry,rot,a])=>{x.save();x.translate(cx,cy);x.rotate(rot);x.strokeStyle=`rgba(234,192,99,${a})`;x.lineWidth=2;x.setLineDash([3,9]);x.beginPath();x.ellipse(0,0,rx,ry,0,0,7);x.stroke();x.restore();});
+  const g=x.createRadialGradient(cx,cy,0,cx,cy,R*1.9);g.addColorStop(0,hexA(C,.95));g.addColorStop(.5,hexA(C,.6));g.addColorStop(1,hexA(C,0));x.fillStyle=g;x.beginPath();x.arc(cx,cy,R*1.9,0,7);x.fill();
+  const r2=rng(31);for(let i=0;i<120;i++){const a=r2()*7,l=R*(1.05+r2()*.6);x.strokeStyle=hexA('#fff6e0',.1+r2()*.18);x.lineWidth=1.5;x.beginPath();x.moveTo(cx+Math.cos(a)*R,cy+Math.sin(a)*R);x.lineTo(cx+Math.cos(a)*l,cy+Math.sin(a)*l);x.stroke();}
+  const ring=x.createRadialGradient(cx,cy,R*.96,cx,cy,R*1.16);ring.addColorStop(0,'rgba(255,246,220,.95)');ring.addColorStop(.3,hexA(C,.5));ring.addColorStop(1,hexA(C,0));x.fillStyle=ring;x.beginPath();x.arc(cx,cy,R*1.16,0,7);x.fill();
+  const mg=x.createRadialGradient(cx-70,cy-80,20,cx,cy,R);mg.addColorStop(0,'#2a1630');mg.addColorStop(1,'#0f0712');x.fillStyle=mg;x.beginPath();x.arc(cx+12,cy-6,R,0,7);x.fill();
+  x.strokeStyle='rgba(234,192,99,.5)';x.lineWidth=2;x.beginPath();x.arc(cx+12,cy-6,R-14,0,7);x.stroke();
+  const dx=cx+Math.cos(-2.35)*R,dy=cy+Math.sin(-2.35)*R,dg=x.createRadialGradient(dx,dy,0,dx,dy,110);dg.addColorStop(0,'#fff');dg.addColorStop(.25,'rgba(255,240,200,.7)');dg.addColorStop(1,'rgba(255,240,200,0)');x.fillStyle=dg;x.beginPath();x.arc(dx,dy,110,0,7);x.fill();sparkle(x,dx,dy,80,'rgba(255,255,255,.95)');
+  x.fillStyle='#eac063';x.textAlign='center';x.shadowColor='rgba(234,192,99,.55)';x.shadowBlur=30;x.font=`380px ${MARKF}`;x.fillText(py,cx+12,cy+130);x.shadowBlur=0;
+  x.restore();
+  x.textAlign='center';x.fillStyle='#eac063';x.font=`600 34px ${SERIF}`;spacing(x,10);x.fillText(`${y} PERSONAL YEAR`,EW/2,190);spacing(x,0);
+  x.fillStyle='#f3e6c4';x.font=`900 96px ${SANS}`;x.fillText(`${y} 流年電子書`,EW/2,300);
+  x.font=`700 60px ${SANS}`;x.fillStyle='#eac063';x.fillText(`你的「${PY[py][0]}」`,EW/2,1220);
+  x.fillStyle='#d9cbd9';x.font=`500 34px ${SANS}`;x.fillText(`流年數 ${py}・${PY[py][1]}`,EW/2,1286);
+  const nm=(($('#cname')||{}).value||'').trim()||'酒友';
+  x.strokeStyle='rgba(234,192,99,.5)';x.lineWidth=2;x.beginPath();x.moveTo(EW/2-200,1370);x.lineTo(EW/2+200,1370);x.stroke();
+  x.fillStyle='#f3e6c4';x.font=`700 46px ${HANDZH}`;x.fillText(`給 ${nm}`,EW/2,1440);
+  x.fillStyle='#b9a6bd';x.font=`500 34px ${SERIF}`;spacing(x,6);x.fillText(`${S.y}.${String(S.m).padStart(2,'0')}.${String(S.d).padStart(2,'0')}　｜　${S.chain.join(' / ')}`,EW/2,1500);spacing(x,0);
+  drawLogo(x,LOGO.gold,EW/2,1580,74,'center');
+}
+function starDust2(x){const r=rng(99);for(let i=0;i<160;i++){const X=r()*EW,Y=r()*EH;if(r()<.15)sparkle(x,X,Y,5+r()*9,r()<.7?'#eac063':'#f3e6c4');else{x.fillStyle=`rgba(243,230,196,${.2+r()*.5})`;x.beginPath();x.arc(X,Y,1+r()*1.6,0,7);x.fill();}}}
+function ebOverview(x,y,py){
+  ebBg(x,false);ebHead(x,y,'這一年的你',3);const L=LUCK[py],X=PYX[py],p=PY[py];
+  // 主卡
+  rr(x,96,266,EW-192,250,28);x.fillStyle=L.hex;x.fill();
+  x.fillStyle=L.fg;x.textAlign='left';x.font=`${180}px ${MARKF}`;x.fillText(py,150,462);
+  x.font=`700 28px ${SANS}`;x.fillText(`${y} 流年數 ${py}`,350,346);x.font=`900 66px ${SANS}`;x.fillText(`「${p[0]}」`,330,424);
+  x.font=`500 30px ${SANS}`;x.fillText(p[1],350,478);
+  let Y=para(x,p[2],96,590,EW-192,32,1.65,'#2d1932');
+  // 關鍵字
+  Y+=10;let kx=96;x.font=`700 30px ${SANS}`;X.kw.forEach(k=>{const w=x.measureText(k).width+56;rr(x,kx,Y-6,w,58,29);x.fillStyle='#2d1932';x.fill();x.fillStyle='#eac063';x.fillText(k,kx+28,Y+34);kx+=w+16;});
+  Y+=96;
+  // 九年循環
+  x.fillStyle='#9a6f1f';x.font=`700 26px ${SANS}`;spacing(x,4);x.fillText(`九年循環・你在第 ${py} 年`,96,Y);spacing(x,0);Y+=40;
+  const cw=(EW-192)/9;for(let k=1;k<=9;k++){const cx=96+cw*(k-.5),on=k===py;x.beginPath();x.arc(cx,Y+44,on?42:32,0,7);x.fillStyle=on?LUCK[k].hex:(k<py?'#e2d9ca':'#efe9de');x.fill();if(on){x.strokeStyle='#2d1932';x.lineWidth=3;x.stroke();}
+    x.fillStyle=on?LUCK[k].fg:(k<py?'#8d7f90':'#5f4e64');x.textAlign='center';x.font=`900 ${on?36:28}px ${SANS}`;x.fillText(k,cx,Y+56);x.font=`500 20px ${SANS}`;x.fillStyle='#5f4e64';x.fillText(PY[k][0].replace('年',''),cx,Y+118);}
+  x.textAlign='left';Y+=200;
+  // 愛情工作財運
+  [['愛情','LOVE',X.love],['工作','CAREER',X.work],['財運','MONEY',X.money]].forEach(([t,en,tx])=>{
+    x.fillStyle='#2d1932';x.font=`900 38px ${SANS}`;x.fillText(t,96,Y);x.fillStyle='#9a6f1f';x.font=`600 24px ${SERIF}`;spacing(x,4);x.fillText(en,186,Y-2);spacing(x,0);
+    Y=para(x,tx,96,Y+50,EW-192,29,1.6,'#3d2d42')+26;});
+  // 宜忌
+  Y=Math.min(Y,EH-330);const half=(EW-192-30)/2;rr(x,96,Y,half,200,22);x.fillStyle='#eaf3ea';x.fill();rr(x,96+half+30,Y,half,200,22);x.fillStyle='#f6e7e4';x.fill();
+  x.fillStyle='#2f7a48';x.font=`900 32px ${SANS}`;x.fillText('今年宜',126,Y+52);x.fillStyle='#b8452f';x.fillText('今年忌',126+half+30,Y+52);
+  x.font=`500 28px ${SANS}`;x.fillStyle='#2d1932';X.do.forEach((t,i)=>x.fillText('・'+t,126,Y+100+i*36));X.dont.forEach((t,i)=>x.fillText('・'+t,126+half+30,Y+100+i*36));
+  ebFoot(x);
+}
+const MDET={
+ 1:{love:'有想認識的人就主動開口，有伴的人一起訂個新目標。',work:'適合提案、開新企劃、跟主管談想做的事。',self:'把拖很久的事挑一件開始做，做 15 分鐘也算。'},
+ 2:{love:'多聽少說，對方一句話背後可能藏著很多情緒。',work:'找夥伴一起做，比一個人硬衝更快到。',self:'每天留 10 分鐘安靜下來，問自己今天心情幾分。'},
+ 3:{love:'約會、出遊、表白都適合，讓對方看見你開心的樣子。',work:'適合發表、簡報、經營社群，大方展示成果。',self:'控制一下購物車，開心可以，荷包也要顧。'},
+ 4:{love:'用行動表達在乎，一起把生活小事整理好。',work:'把手上的進度做扎實，補資料、建流程最划算。',self:'早點睡、規律運動，身體是這個月的本錢。'},
+ 5:{love:'安排一次小旅行或沒做過的約會，替關係加點新鮮感。',work:'可能有臨時變動，保持彈性，新機會常藏在意外裡。',self:'想衝動辭職、刷卡、分手前，先睡一晚再決定。'},
+ 6:{love:'適合見家人、修復關係，把想說的謝謝說出口。',work:'團隊合作和照顧客戶，會帶來好口碑。',self:'別把所有人的事都扛下來，先問自己累不累。'},
+ 7:{love:'需要一點自己的空間，記得跟對方說不是在生氣。',work:'適合研究、學習、做計畫，不急著衝業績。',self:'讀一本書、抽一張牌、寫日記，答案會慢慢浮現。'},
+ 8:{love:'聊聊未來的規劃和金錢觀，讓關係更踏實。',work:'適合談加薪、談合作條件，你的努力值得被看見。',self:'記帳、整理投資，但別為了快賺冒太大風險。'},
+ 9:{love:'放下過去的心結，該結束的好好說再見。',work:'把手上的案子收尾、交接，清出空間給新的開始。',self:'斷捨離一下：衣櫃、手機相簿、不再適合你的關係。'}
+};
+function ebCalc(x,y,py){
+  ebBg(x,false);ebHead(x,y,'流年數怎麼算',2);
+  const md=[...String(S.m),...String(S.d)].map(Number),yd=[...String(y)].map(Number),all=[...md,...yd],sum=all.reduce((a,b)=>a+b,0);
+  const steps=[];let v=sum;while(v>9){const nv=[...String(v)].map(Number).reduce((a,b)=>a+b,0);steps.push(`${[...String(v)].join(' + ')} = ${nv}`);v=nv;}
+  let Y=para(x,'流年數看的是「這一年」的主題。用你的出生月、日，加上想看的年份，把每個數字拆開相加，加到剩一位數就是流年數。不看出生年，所以同月同日生的人，同一年的流年數會一樣。',96,300,EW-192,32,1.7,'#3d2d42');
+  Y+=30;rr(x,96,Y,EW-192,330,26);x.fillStyle='#2d1932';x.fill();
+  x.fillStyle='#eac063';x.font=`700 28px ${SANS}`;x.fillText(`以你的生日 ${S.m}/${S.d}、${y} 年為例`,140,Y+64);
+  x.fillStyle='#f3e6c4';x.font=`700 40px ${SANS}`;x.fillText(`${md.join(' + ')}  +  ${yd.join(' + ')}  =  ${sum}`,140,Y+140);
+  steps.forEach((t,i)=>{x.font=`700 40px ${SANS}`;x.fillText(t,140,Y+200+i*58);});
+  x.fillStyle='#eac063';x.font=`900 46px ${SANS}`;x.textAlign='right';x.fillText(`流年數 ${py}・${PY[py][0]}`,EW-140,Y+290);x.textAlign='left';
+  Y+=400;
+  x.fillStyle='#2d1932';x.font=`900 48px ${SANS}`;x.fillText('為什麼是九年一個循環？',96,Y);
+  Y=para(x,'生命靈數只用 1 到 9 這九個數字，每個數字代表一種能量。流年數每過一年就加 1，走到 9 之後又回到 1，就像四季輪替：1 播種、5 轉彎、9 收成，然後再開始新的一輪。知道自己走到第幾年，就知道這一年適合衝、適合等，還是適合收。',96,Y+56,EW-192,30,1.7,'#3d2d42')+30;
+  const cw=(EW-192-24)/3,ch=118;
+  for(let k=1;k<=9;k++){const X=96+((k-1)%3)*(cw+12),YY=Y+Math.floor((k-1)/3)*(ch+12),on=k===py,L=LUCK[k];
+    rr(x,X,YY,cw,ch,18);x.fillStyle=on?'#2d1932':'#fff';x.fill();if(!on){x.strokeStyle='#e2d9ca';x.lineWidth=2;x.stroke();}
+    x.beginPath();x.arc(X+50,YY+ch/2,30,0,7);x.fillStyle=L.hex;x.fill();if(k===9){x.strokeStyle='#cfc6b8';x.lineWidth=2;x.stroke();}
+    x.fillStyle=L.fg;x.textAlign='center';x.font=`900 30px ${SANS}`;x.fillText(k,X+50,YY+ch/2+11);x.textAlign='left';
+    x.fillStyle=on?'#eac063':'#2d1932';x.font=`900 30px ${SANS}`;x.fillText(PY[k][0],X+96,YY+50);
+    x.fillStyle=on?'#f3e6c4':'#5f4e64';x.font=`500 22px ${SANS}`;x.fillText(PY[k][1],X+96,YY+88);}
+  ebFoot(x);
+}
+function ebMonths2(x,y,py,half,pg){
+  ebBg(x,false);ebHead(x,y,half?'十二個月的節奏（下）':'十二個月的節奏（上）',pg);
+  const top=270,gap=16,h=(EH-top-120-gap*5)/6;
+  for(let i=0;i<6;i++){const m=half*6+i+1,pm=reduce9(py+m),L=LUCK[pm],X=PMX[pm],D=MDET[pm],Y=top+i*(h+gap);
+    rr(x,80,Y,EW-160,h,22);x.fillStyle='#fff';x.fill();x.strokeStyle='#e8e0d2';x.lineWidth=2;x.stroke();
+    x.fillStyle=L.hex;rr(x,92,Y+18,8,h-36,4);x.fill();
+    x.fillStyle='#2d1932';x.font=`900 40px ${SANS}`;x.fillText(`${m}月`,118,Y+54);
+    x.beginPath();x.arc(268,Y+40,28,0,7);x.fillStyle=L.hex;x.fill();if(pm===9){x.strokeStyle='#cfc6b8';x.lineWidth=2;x.stroke();}
+    x.fillStyle=L.fg;x.textAlign='center';x.font=`900 28px ${SANS}`;x.fillText(pm,268,Y+50);x.textAlign='left';
+    x.fillStyle='#2d1932';x.font=`900 34px ${SANS}`;x.fillText(X[0],314,Y+52);
+    x.fillStyle='#4a3a4d';x.font=`400 24px ${SANS}`;x.fillText(PM[pm],118,Y+90);
+    const rows=[['感情',D.love,'#c4372b'],['工作',D.work,'#3577c2'],['提醒',D.self,'#7a4ba3']];
+    rows.forEach(([t,v,c],j)=>{const yy=Y+130+j*35;rr(x,118,yy-26,64,32,16);x.fillStyle=c;x.fill();x.fillStyle='#fff';x.font=`700 19px ${SANS}`;x.textAlign='center';x.fillText(t,150,yy-3);x.textAlign='left';x.fillStyle='#3d2d42';x.font=`400 23px ${SANS}`;x.fillText(v,196,yy-2);});
+    x.textAlign='right';x.font=`700 22px ${SANS}`;x.fillStyle='#2f7a48';x.fillText(`宜 ${X[1]}`,EW-112,Y+44);x.fillStyle='#b8452f';x.fillText(`忌 ${X[2]}`,EW-112,Y+76);x.textAlign='left';}
+  ebFoot(x);
+}
+function ebMonths(x,y,py){
+  ebBg(x,false);ebHead(x,y,'十二個月的節奏',3);
+  const top=276,rowH=(EH-top-130)/12;
+  for(let i=0;i<12;i++){const m=i+1,pm=reduce9(py+m),L=LUCK[pm],x0=PMX[pm],Y=top+i*rowH;
+    if(i%2===0){rr(x,80,Y,EW-160,rowH-8,18);x.fillStyle='rgba(45,25,50,.04)';x.fill();}
+    x.fillStyle='#2d1932';x.textAlign='left';x.font=`900 34px ${SANS}`;x.fillText(`${m}月`,108,Y+rowH*.58);
+    x.beginPath();x.arc(268,Y+rowH*.45,34,0,7);x.fillStyle=L.hex;x.fill();if(pm===9){x.strokeStyle='#cfc6b8';x.lineWidth=2;x.stroke();}
+    x.fillStyle=L.fg;x.textAlign='center';x.font=`900 34px ${SANS}`;x.fillText(pm,268,Y+rowH*.45+12);
+    x.textAlign='left';x.fillStyle='#2d1932';x.font=`900 32px ${SANS}`;x.fillText(x0[0],330,Y+rowH*.38);
+    x.font=`400 25px ${SANS}`;x.fillStyle='#4a3a4d';x.fillText(PM[pm],330,Y+rowH*.68);
+    x.font=`700 22px ${SANS}`;x.textAlign='right';x.fillStyle='#2f7a48';x.fillText(`宜 ${x0[1]}`,EW-108,Y+rowH*.38);x.fillStyle='#b8452f';x.fillText(`忌 ${x0[2]}`,EW-108,Y+rowH*.68);x.textAlign='left';}
+  ebFoot(x);
+}
+function ebExtra(x,y,py){
+  ebBg(x,false);ebHead(x,y,'運勢書限定',6);const n=N[py],L=LUCK[py];
+  const ms=Array.from({length:12},(_,i)=>[i+1,reduce9(py+i+1)]),pickM=a=>ms.filter(([,v])=>a.includes(v)).map(([m])=>m+'月').join('、')||'—';
+  const boxes=[['衝刺月',pickM([1,8]),'適合開始、爭取、談條件','#c4372b'],['人緣月',pickM([3,6]),'適合社交、約會、經營關係','#e3b21f'],['休息月',pickM([4,7]),'放慢腳步、充電、顧身體','#7a4ba3'],['轉換月',pickM([2,5,9]),'等待、變化、收尾整理','#3577c2']];
+  const bw=(EW-192-30)/2;boxes.forEach(([t,v,s,c],i)=>{const X=96+(i%2)*(bw+30),Y=276+Math.floor(i/2)*210;rr(x,X,Y,bw,186,22);x.fillStyle='#fff';x.fill();x.fillStyle=c;x.fillRect(X,Y+24,8,138);
+    x.fillStyle=c;x.font=`900 32px ${SANS}`;x.fillText(t,X+34,Y+58);x.fillStyle='#2d1932';x.font=`900 40px ${SANS}`;x.fillText(v,X+34,Y+114);x.fillStyle='#5f4e64';x.font=`400 24px ${SANS}`;x.fillText(s,X+34,Y+156);});
+  let Y=740;
+  // 塔羅
+  rr(x,96,Y,220,360,20);x.fillStyle='#2d1932';x.fill();x.strokeStyle='#eac063';x.lineWidth=3;rr(x,110,Y+14,192,332,14);x.stroke();
+  x.textAlign='center';x.fillStyle='#eac063';x.font=`600 44px ${SERIF}`;x.fillText(n.tarot[0],206,Y+80);x.font=`60px ${SANS}`;x.fillText('✦',206,Y+200);x.font=`900 34px ${SANS}`;x.fillText(n.tarot[1],206,Y+310);x.textAlign='left';
+  x.fillStyle='#9a6f1f';x.font=`700 26px ${SANS}`;x.fillText(`${y} 年度塔羅・大阿爾克那 ${n.tarot[0]}`,350,Y+46);
+  x.fillStyle='#2d1932';x.font=`900 52px ${SANS}`;x.fillText(n.tarot[1],350,Y+112);x.fillStyle='#7a6a7e';x.font=`600 30px ${SERIF}`;x.fillText(n.tarot[2],350+x.measureText(n.tarot[1]).width+80,Y+110);
+  para(x,n.tarot[3],350,Y+170,EW-446,29,1.65,'#3d2d42');
+  Y+=410;
+  // 幸運色水晶
+  rr(x,96,Y,EW-192,170,24);x.fillStyle=L.hex;x.fill();x.fillStyle=L.fg;x.font=`700 26px ${SANS}`;x.fillText(`${y} 年度幸運色・守護水晶`,136,Y+52);
+  x.font=`900 46px ${SANS}`;x.fillText(`${L.name}・${L.crys.join('、')}`,136,Y+112);x.font=`400 26px ${SANS}`;x.fillText(L.eff,136,Y+150);
+  Y+=220;
+  // 信
+  rr(x,96,Y,EW-192,EH-Y-130,24);x.fillStyle='#fffdf8';x.fill();x.strokeStyle='#e2d9ca';x.lineWidth=2;x.stroke();
+  x.fillStyle='#2d1932';x.font=`700 40px ${HANDZH}`;x.fillText(`給 ${y} 的你：`,140,Y+80);
+  const yy=para(x,(typeof Y27LET!=='undefined'&&Y27LET[py])||PY[py][2],140,Y+150,EW-280,34,1.8,'#3d2d42',700,HANDZH);
+  x.textAlign='right';x.font=`700 40px ${HANDZH}`;x.fillStyle='#9a6f1f';x.fillText('Tequila',EW-140,yy+40);x.textAlign='left';
+  ebFoot(x);
+}
+function ebBack(x,y){
+  ebBg(x,true);starDust2(x);x.textAlign='center';
+  x.fillStyle='#eac063';x.font=`600 34px ${SERIF}`;spacing(x,8);x.fillText('CHEERS',EW/2,300);spacing(x,0);
+  x.fillStyle='#f3e6c4';x.font=`900 64px ${SANS}`;x.fillText('敬這一年的你，乾一杯',EW/2,400);
+  para2c(x,'流年是提醒，不是判決。看清楚自己這杯是什麼，再決定怎麼喝這一年。',EW/2,490,860,32,'#d9cbd9');
+  // VIP 酒友家族
+  const Y=640;rr(x,110,Y,EW-220,560,32);const g=x.createLinearGradient(0,Y,0,Y+560);g.addColorStop(0,'rgba(234,192,99,.18)');g.addColorStop(1,'rgba(234,192,99,.06)');x.fillStyle=g;x.fill();x.strokeStyle='rgba(234,192,99,.7)';x.lineWidth=2.5;x.stroke();
+  x.fillStyle='#eac063';x.font=`600 28px ${SERIF}`;spacing(x,8);x.fillText('VIP FAMILY',EW/2,Y+76);spacing(x,0);
+  x.fillStyle='#f3e6c4';x.font=`900 56px ${SANS}`;x.fillText('歡迎加入 VIP 酒友家族',EW/2,Y+156);
+  const perks=['期限內每天可以問 1 題，營業時間立即回覆','每月專屬運勢建議，陪你一個月一個月走','半年、年度方案再送能量體檢與回顧總結'];
+  x.textAlign='left';x.font=`500 32px ${SANS}`;perks.forEach((t,i)=>{sparkle(x,250,Y+236+i*64,12,'#eac063');x.fillStyle='#f3e6c4';x.fillText(t,284,Y+248+i*64);});
+  x.textAlign='center';x.fillStyle='#d9cbd9';x.font=`500 28px ${SANS}`;x.fillText('月 VIP $1,500 起・只想看每月方向，專屬運勢 $333 起',EW/2,Y+470);
+  x.fillStyle='#eac063';x.font=`700 30px ${SANS}`;x.fillText('私訊官方 LINE，了解 VIP 方案',EW/2,Y+520);
+  // 兩個 QR
+  const qy=1270;[[EW/2-260,'https://hazelethal2020-prog.github.io/tequila-numerology/','回到生命靈數網站'],[EW/2+60,'https://lin.ee/StcUFOO','加入 VIP・官方 LINE']].forEach(([qx,u,t])=>{qr(x,u,qx,qy,200,'#2d1932','#f3e6c4');x.fillStyle='#f3e6c4';x.font=`700 28px ${SANS}`;x.fillText(t,qx+100,qy+250);});
+  drawLogo(x,LOGO.gold,EW/2,1580,70,'center');
+  x.fillStyle='#8f7d94';x.font=`500 22px ${SANS}`;x.fillText('僅供自我覺察與娛樂參考',EW/2,EH-60);
+}
+function para2c(x,t,cx,Y,maxW,fs,col){x.font=`500 ${fs}px ${SANS}`;x.fillStyle=col;x.textAlign='center';wrapLines(x,t,maxW).forEach((l,i)=>x.fillText(l,cx,Y+i*fs*1.7));}
+async function ebookPages(y,prem){
+  await LOGO.ready;const py=personalYear(S.m,S.d,y);
+  const fns=[c=>ebCover(c,y,py),c=>ebCalc(c,y,py),c=>ebOverview(c,y,py),c=>ebMonths2(c,y,py,0,4),c=>ebMonths2(c,y,py,1,5)];if(prem)fns.push(c=>ebExtra(c,y,py));fns.push(c=>ebBack(c,y));
+  return fns.map(f=>{const c=document.createElement('canvas');c.width=EW;c.height=EH;f(c.getContext('2d'));return c;});
+}
+function ebookPDF(canvases){
+  const te=new TextEncoder(),parts=[],offs=[];let len=0;const put=p=>{const u=typeof p==='string'?te.encode(p):p;parts.push(u);len+=u.length;};
+  const obj=(n,body,stream)=>{offs[n]=len;put(`${n} 0 obj\n`);put(body);if(stream){put('\nstream\n');put(stream);put('\nendstream');}put('\nendobj\n');};
+  const PW=419.528,PH=595.276,n=canvases.length;put('%PDF-1.4\n');
+  obj(1,'<< /Type /Catalog /Pages 2 0 R >>');obj(2,`<< /Type /Pages /Kids [${canvases.map((_,i)=>(3+i*3)+' 0 R').join(' ')}] /Count ${n} >>`);
+  canvases.forEach((c,i)=>{const b=atob(c.toDataURL('image/jpeg',.9).split(',')[1]),u=new Uint8Array(b.length);for(let k=0;k<b.length;k++)u[k]=b.charCodeAt(k);
+    const p=3+i*3,ops=te.encode(`q ${PW} 0 0 ${PH} 0 0 cm /Im0 Do Q`);
+    obj(p,`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${PW} ${PH}] /Resources << /XObject << /Im0 ${p+1} 0 R >> >> /Contents ${p+2} 0 R >>`);
+    obj(p+1,`<< /Type /XObject /Subtype /Image /Width ${EW} /Height ${EH} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${u.length} >>`,u);
+    obj(p+2,`<< /Length ${ops.length} >>`,ops);});
+  const total=3+n*3,xs=len;put(`xref\n0 ${total}\n0000000000 65535 f \n`);for(let i=1;i<total;i++)put(String(offs[i]).padStart(10,'0')+' 00000 n \n');
+  put(`trailer\n<< /Size ${total} /Root 1 0 R >>\nstartxref\n${xs}\n%%EOF`);return new Blob(parts,{type:'application/pdf'});
+}
+
+
 /* ---------- Logo（金色龍舌蘭＋眼睛＋Tequila 字標，向量） ---------- */
 const LOGO_SVG="<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"37 36 975 652\"><path fill=\"#eac063\" fill-rule=\"evenodd\" d=\"M504 678C505.1 675.2 505.9 672.0 506 671C506.5 670.9 507.3 666.9 508 663C508.5 658.3 509.7 652.6 510 650C515.8 632.7 515.5 638.5 516 566L516 498L519 495C519.9 493.0 522.7 490.3 525 489C530.1 485.8 529.7 484.0 523 482C511.7 477.2 501.5 472.2 499 470C498.4 468.8 497.3 468.0 497 468C495.2 468.0 486.2 460.3 478 452C473.4 447.5 469.1 444.0 468 444C466.3 444.0 460.0 451.8 460 454C460.0 455.0 443.9 471.4 438 476C436.0 478.1 431.3 482.0 427 485C423.5 488.3 419.6 492.0 419 493C417.9 494.5 416.1 496.6 415 498C413.6 499.3 412.1 501.2 412 502C410.9 503.1 409.3 506.0 408 509C406.3 511.1 404.5 515.1 404 517C403.4 519.6 402.2 523.2 401 525C399.1 531.4 399.4 557.0 402 565C403.1 568.4 404.0 572.0 404 573C404.0 574.5 405.2 577.1 412 590C412.7 591.3 413.6 592.7 414 593C414.4 593.3 416.3 595.5 418 598C420.1 600.5 424.5 605.4 428 609C431.4 612.6 434.8 616.7 436 618C437.6 622.1 439.8 621.7 447 617C449.9 614.1 455.1 610.2 458 608C461.5 605.4 466.1 601.9 468 600C483.5 588.1 484.4 588.1 485 601C486.2 613.7 488.1 628.3 490 634C490.3 636.2 491.4 642.8 492 648C492.6 653.2 493.7 659.7 495 662C495.3 665.1 496.0 668.7 496 670C496.0 673.4 498.3 682.0 500 684C501.2 686.8 503.4 684.3 504 678ZM344 621C360.4 609.9 367.3 605.6 374 602C377.4 600.5 381.2 598.5 382 598C382.8 597.4 384.7 596.6 386 596C389.2 595.0 389.9 592.3 388 591C386.8 591.1 383.7 591.5 381 592C371.6 595.0 360.7 593.9 352 590C350.9 588.7 348.9 588.0 348 588C347.3 588.0 343.7 585.0 340 581C333.1 574.1 324.0 557.8 324 553C324.0 551.1 323.3 548.3 322 546C320.1 540.6 321.1 538.6 328 535C331.5 533.4 335.2 532.0 336 532C337.3 532.0 339.4 531.3 341 531C344.6 528.5 355.7 524.0 357 524C358.3 524.0 364.8 521.2 371 518C373.2 516.9 375.8 516.0 377 516C377.9 516.0 381.7 514.6 385 513C391.6 510.1 392.0 509.8 392 507C392.0 504.8 391.1 502.1 390 501C388.9 499.3 388.0 497.1 388 496C388.0 494.4 387.3 492.7 386 492C385.7 491.3 385.0 490.2 385 490C385.0 489.0 383.9 486.2 383 484C381.2 480.8 380.0 477.9 380 477C380.0 476.4 378.2 472.1 376 468C374.0 463.2 371.9 458.1 372 456C371.2 454.6 370.2 452.6 369 452C368.6 451.3 368.0 450.2 368 450C368.0 448.9 367.1 447.5 366 447C363.4 444.2 358.5 445.1 347 450C345.1 451.2 342.5 452.0 341 452C338.7 452.0 323.2 460.7 316 466C313.1 468.7 308.3 473.5 306 477C300.1 483.9 292.0 499.4 292 503C292.0 504.4 291.1 508.7 290 512C287.2 522.4 287.2 544.4 290 557C294.0 573.6 295.5 578.4 298 581C298.3 581.9 299.1 583.6 299 585C300.2 587.3 302.6 591.0 307 597C310.3 601.1 321.0 610.1 327 614C329.0 614.9 332.1 617.7 334 620C337.7 624.8 338.2 624.8 344 621ZM917 618C921.3 615.1 926.0 611.4 928 610C929.7 608.8 932.0 607.1 933 606C935.8 603.7 945.5 596.5 948 595C951.0 593.0 951.1 593.0 954 595C954.9 596.8 956.0 599.0 956 600C956.0 601.6 956.9 603.9 958 605C959.1 606.7 960.0 608.2 960 609C960.0 611.1 973.1 620.0 977 620C977.9 620.0 979.9 620.9 981 622C985.2 625.1 986.6 624.5 990 618C995.3 607.4 996.7 604.9 998 603C999.3 602.1 1000.0 600.9 1000 600C1000.0 599.8 1000.9 598.5 1002 598C1003.1 596.5 1004.0 595.2 1004 595C1004.0 594.1 1005.2 591.9 1007 590C1011.1 583.4 1007.9 579.2 1003 585C1000.6 587.5 999.4 588.0 996 588C990.7 588.0 989.4 587.3 988 584C987.7 582.6 986.9 563.8 987 542C985.7 496.9 985.9 495.0 992 490C998.0 484.6 997.1 481.8 989 480C981.0 477.5 975.3 475.3 972 473C962.1 466.1 956.6 461.7 949 454C943.8 449.3 939.3 445.4 939 445C937.8 445.0 935.9 447.1 934 450C929.2 457.3 927.0 459.9 918 468C909.4 477.3 909.1 477.6 899 485C889.6 493.1 876.0 510.4 876 515C876.0 515.8 875.3 517.8 874 519C870.2 527.6 868.9 545.7 871 561C874.5 579.4 880.7 591.2 895 606C900.5 612.3 905.0 617.5 905 618C905.0 618.9 908.9 624.0 910 624C909.9 624.0 913.4 621.4 917 618ZM760 616C761.2 614.1 762.4 611.8 763 611C763.4 610.2 764.3 608.4 765 607C765.5 605.6 766.9 603.1 768 602C769.1 599.9 770.9 596.6 772 594C773.2 592.0 774.8 589.6 776 589C777.5 587.4 777.4 584.6 775 583C774.0 581.8 773.6 581.9 772 584C769.7 587.5 768.8 588.0 765 588C759.6 588.0 756.4 584.8 755 578C754.9 575.7 754.5 554.4 754 531C754.5 482.8 754.3 484.4 763 478C765.0 476.3 767.0 474.5 767 474C766.9 473.4 758.6 468.0 758 468C756.0 468.0 742.1 455.8 737 450C728.4 440.3 727.7 440.5 718 454C714.3 460.6 710.4 466.4 710 467C709.0 468.5 706.6 471.8 704 475C700.8 478.9 699.9 480.8 700 483C700.6 487.8 701.9 487.6 708 482C711.0 479.2 713.9 477.1 714 477C715.0 477.5 716.4 479.6 718 482L720 486L720 534C720.0 573.4 720.3 582.5 722 587C722.3 590.0 723.3 593.9 724 596C724.0 597.4 726.0 601.0 728 604C730.3 606.2 732.4 608.8 733 609C733.2 610.0 734.6 611.3 736 612C751.4 623.0 755.9 623.7 760 616ZM842 621C842.3 620.8 843.5 618.9 844 617C846.8 611.6 858.9 594.7 865 588C869.3 583.2 870.0 580.6 867 580C866.3 579.2 864.4 580.5 862 583C859.0 586.2 856.4 588.0 855 588C852.5 588.0 845.7 584.2 842 580L839 578L839 496L840 414L842 408C845.0 400.1 846.5 398.0 853 393C857.6 389.2 858.9 388.7 867 388C877.0 386.2 880.3 384.2 878 381C875.1 378.0 851.3 381.8 845 386C843.5 387.3 841.8 388.0 841 388C840.0 388.0 838.3 388.8 837 390C836.0 390.7 832.1 393.8 828 396C824.8 399.2 819.1 405.0 816 409C808.8 418.1 806.9 418.7 804 413C802.7 411.1 799.3 406.2 796 402C791.5 396.1 790.2 394.9 788 395C784.4 395.6 784.5 398.0 788 402C791.4 405.3 796.0 411.6 796 413C796.0 413.2 800.6 423.6 802 426C802.7 427.3 803.5 433.2 804 439C805.1 451.6 805.4 574.9 804 580C804.1 581.4 802.8 583.7 802 585C800.5 585.9 798.0 588.2 796 590C792.2 593.6 793.1 596.0 799 596C800.5 596.0 806.1 598.0 812 601C820.2 604.7 822.6 606.5 830 614C837.2 621.6 839.2 622.8 842 621ZM600 618C601.9 616.8 603.0 615.2 603 615C603.0 614.0 612.6 604.4 620 598C623.5 595.0 627.4 591.5 629 590C632.4 587.0 635.3 587.7 636 592C636.5 593.6 637.5 595.9 638 597C639.3 597.9 640.0 599.1 640 600C640.0 601.5 649.7 610.6 657 615C665.8 621.5 669.8 621.7 673 616C674.9 614.2 676.0 612.1 676 612C676.0 611.1 676.6 609.9 677 609C678.1 608.2 680.1 605.0 682 602C683.3 598.8 686.3 593.8 688 591C692.4 584.8 692.9 582.3 690 581C689.2 580.8 687.7 581.8 685 584C680.6 590.0 676.1 589.1 671 582L668 578L668 534L668 490L671 485C672.6 481.8 675.2 478.2 677 477C680.8 474.0 680.8 472.7 677 470C672.0 466.2 661.2 455.0 660 452C658.7 450.3 657.3 447.6 656 446C653.8 441.0 649.6 439.5 648 443C648.0 444.5 647.0 446.6 646 448C645.1 449.4 643.0 452.5 641 455C639.8 457.4 635.2 462.6 631 467L624 474L627 477C629.6 479.4 631.8 482.8 633 487C635.3 492.2 635.4 494.3 636 532C636.2 570.6 635.7 579.0 633 579C632.5 579.0 629.9 580.9 627 583C616.2 592.9 614.7 593.5 612 590C610.5 588.9 609.3 588.0 609 588C608.3 588.0 605.2 585.6 602 583L596 578L596 528C596.0 480.8 595.9 478.7 594 474C592.8 471.6 591.5 468.8 591 468C590.4 467.2 589.4 465.4 589 464C587.4 461.3 578.4 452.0 577 452C576.7 452.0 574.3 450.4 572 449C563.5 442.3 559.9 442.9 556 452C554.8 453.7 553.1 456.9 552 458C550.9 460.1 549.1 463.3 548 466C545.0 471.4 543.5 473.8 542 476C539.5 478.2 539.4 484.0 542 484C542.4 484.0 544.4 482.4 546 480C551.2 474.7 556.9 477.0 561 486C562.9 491.0 563.0 493.0 563 534C563.0 572.6 562.8 577.3 561 580C558.6 584.1 555.7 587.1 553 588C548.3 590.0 552.2 595.9 558 596C560.1 596.1 564.0 597.4 567 599C570.0 600.6 573.9 602.6 576 603C577.3 604.2 582.4 608.5 587 613C591.4 617.4 595.7 621.0 597 621C597.3 621.0 599.1 619.8 600 618ZM210 617C223.2 611.8 225.4 610.9 231 607C233.4 605.6 236.0 604.0 236 604C236.6 604.0 239.0 602.5 242 601C244.1 599.0 247.0 597.0 248 596C249.8 595.4 256.6 590.0 260 587C261.7 585.2 261.4 581.2 259 580C257.6 580.0 255.3 580.9 252 583C248.6 585.4 245.1 587.4 244 588C242.5 588.4 239.0 590.2 236 592C222.4 600.1 204.9 599.8 187 591C181.8 588.7 175.5 585.1 173 583C170.7 581.5 168.3 580.0 168 580C166.5 580.0 146.5 563.5 138 555C133.9 551.4 126.1 543.9 121 539C114.5 532.6 109.8 528.8 107 528C102.2 526.2 89.9 527.3 85 530C82.7 531.1 80.4 532.0 80 532C79.0 532.0 75.9 533.8 73 536C69.6 538.2 66.7 540.0 66 540C66.1 540.0 63.5 541.8 61 544C57.8 546.1 53.8 549.2 52 551C44.4 556.3 46.8 563.5 54 558C60.5 554.5 73.5 556.5 79 562C79.5 563.1 80.7 564.0 81 564C81.5 564.0 84.7 566.8 88 570C96.0 577.7 118.6 596.0 120 596C120.8 596.0 122.3 596.9 123 598C127.1 601.4 147.8 612.0 151 612C151.8 612.0 153.8 612.7 156 614C158.4 615.2 165.2 617.2 174 619C181.4 620.7 201.8 619.4 210 617ZM931 590C915.8 582.1 907.3 566.3 903 538C901.1 525.2 902.5 509.0 906 500C907.3 497.7 908.0 495.3 908 494C908.0 493.3 909.6 490.1 911 487C913.4 484.3 915.5 480.7 916 479C918.2 475.0 922.6 475.1 927 479C933.8 485.7 941.7 492.0 943 492C943.9 492.0 946.7 493.4 949 495L954 498L954 512C953.3 519.4 952.8 538.1 952 554C952.1 568.9 951.7 582.4 951 584C951.0 586.0 943.4 591.5 939 592C937.2 592.9 935.0 592.3 931 590ZM461 589C449.6 583.3 438.1 566.5 436 553C435.4 549.7 434.5 545.8 434 544C433.2 542.7 432.5 534.8 432 526C431.9 513.3 432.1 510.7 434 505C435.1 501.6 436.0 497.9 436 497C436.0 495.1 441.0 484.7 442 484C442.6 484.0 443.4 482.4 444 481C445.4 476.6 449.3 473.6 452 475C453.3 474.9 456.5 477.3 459 480C466.3 486.9 478.7 496.0 481 496C483.3 496.0 483.8 502.1 484 539L484 578L481 583C476.9 588.0 471.1 592.0 468 592C466.6 591.9 463.5 590.8 461 589ZM174 559C188.9 552.3 200.3 544.3 205 537C208.2 532.6 211.0 524.7 211 521C211.0 508.4 198.3 490.1 180 477C174.7 472.8 161.3 459.7 158 455C153.5 449.2 154.8 439.2 160 435C164.1 431.8 165.1 428.4 163 427C160.5 426.6 156.2 428.2 151 432C148.6 433.2 145.8 435.0 145 436C141.4 437.6 134.9 443.1 132 447C129.9 448.8 127.5 451.4 126 453C121.8 457.7 122.1 474.9 127 483C131.0 490.3 140.5 500.6 150 508C157.8 514.0 159.7 515.8 167 524C168.9 526.1 171.3 530.0 173 533C175.2 538.5 175.2 538.5 173 544C171.8 548.8 165.6 556.0 163 556C161.6 556.0 159.8 559.9 160 562C161.3 563.8 164.1 563.3 174 559ZM320 529C317.8 526.1 316.5 513.1 318 504C318.6 499.1 319.5 492.6 320 489C320.5 485.4 321.6 481.1 322 479C323.3 477.8 324.0 475.4 324 474C324.0 470.7 334.0 460.6 337 461C338.3 461.9 348.0 481.6 348 485C348.0 485.8 352.2 495.8 355 500C355.4 501.6 356.0 503.6 356 505C356.0 505.7 356.9 507.9 358 510C359.1 511.1 360.0 513.0 360 514C360.0 515.8 353.0 519.0 333 526C330.0 527.2 326.3 528.7 325 529C322.5 530.7 322.0 530.6 320 529ZM116 502C118.3 500.7 121.2 499.4 122 499C122.8 498.6 123.5 497.0 124 495C123.5 492.0 120.0 490.8 117 493C112.9 497.0 105.4 499.2 98 499C90.0 498.3 78.8 495.6 76 493C74.4 492.6 72.9 492.0 72 492C68.8 491.9 60.0 482.3 56 474L52 466L52 453C52.0 440.1 52.2 438.8 55 434C55.9 431.7 57.7 428.9 59 428C59.3 427.1 60.0 425.9 60 425C60.0 422.7 77.8 408.0 81 408C81.9 408.0 83.6 407.3 85 406C90.2 402.6 125.8 402.6 131 406C132.5 407.3 134.2 408.0 135 408C136.2 408.0 138.7 408.9 141 410C142.8 411.1 145.1 412.0 146 412C146.5 412.0 150.2 413.8 154 416C157.8 418.2 161.3 420.0 162 420C162.4 420.0 163.5 420.6 164 421C165.6 422.7 169.3 424.9 175 428C176.6 428.4 180.4 430.6 183 433C185.8 434.4 188.4 436.0 189 436C189.4 436.0 190.5 436.6 191 437C191.9 438.0 194.8 440.0 198 442C200.2 443.5 203.2 445.6 204 446C205.0 447.3 206.1 448.0 207 448C207.1 448.0 208.6 448.9 210 450C211.4 451.1 213.3 452.0 214 452C215.3 452.0 217.8 452.9 220 454C222.6 455.4 225.9 456.0 230 456C234.1 456.0 237.4 455.4 240 454C242.2 452.9 244.5 452.0 245 452C246.0 452.0 248.4 450.2 251 448C252.7 445.8 254.9 444.0 255 444C255.9 444.0 258.2 442.3 261 440C262.9 438.2 267.0 434.7 270 432C276.7 426.5 279.1 423.8 279 422C278.3 419.7 273.2 419.5 271 422C264.7 427.2 257.2 428.4 250 425C246.1 422.8 245.4 422.4 237 416C233.7 413.9 230.8 412.0 231 412C230.1 412.0 223.5 407.8 222 406C218.5 403.9 189.9 388.0 188 387C186.3 387.1 184.6 386.2 184 385C183.3 384.6 182.1 384.0 181 384C180.6 384.0 178.2 383.1 176 382C173.8 380.9 171.0 380.0 170 380C168.5 380.0 165.0 379.2 162 378C147.8 373.2 114.2 373.2 102 378C99.1 379.2 96.2 380.0 95 380C94.3 380.1 91.0 381.4 88 383C85.0 384.6 81.4 386.5 80 387C76.7 388.8 64.3 398.9 60 403C55.8 408.0 50.5 416.1 47 423C43.2 431.9 40.2 451.2 42 458C42.4 460.4 43.4 465.1 44 468C44.6 471.3 45.8 474.4 47 475C47.3 475.7 48.0 476.8 48 477C48.0 479.3 57.7 489.6 64 494C69.2 498.4 81.0 503.2 88 504C95.6 505.5 110.7 504.1 116 502ZM742 422C761.5 411.1 767.1 389.8 753 382C744.2 377.9 726.3 384.8 724 394C722.4 399.0 723.5 415.5 726 419C730.3 425.9 734.3 426.7 742 422ZM659 415C659.7 413.7 659.3 412.9 657 411C654.0 409.0 642.2 404.0 640 404C639.0 404.0 637.1 403.1 636 402C634.3 400.9 632.3 400.0 631 400C630.3 400.0 628.8 399.4 628 399C627.5 398.1 625.2 397.0 623 396C618.5 395.2 618.4 392.9 623 392C624.9 391.2 627.0 390.5 628 390C628.0 389.5 630.3 388.9 632 388C637.0 387.7 644.7 384.8 650 382C652.2 380.9 654.6 380.0 656 380C656.4 380.0 658.3 379.1 660 378C661.1 376.9 662.9 376.0 664 376C664.5 376.0 666.3 375.1 668 374C669.1 372.9 671.1 372.0 672 372C673.0 372.0 674.3 371.3 675 370C675.8 369.6 677.7 368.2 679 367C684.9 364.8 687.9 362.9 709 348C710.5 347.2 713.1 345.1 715 343C716.9 341.5 718.8 340.0 719 340C719.6 340.0 724.4 336.1 730 331C752.3 311.4 777.3 283.3 775 280C773.6 278.8 770.0 279.4 765 282C763.7 283.2 761.3 284.0 760 284C758.2 284.0 756.0 284.8 744 290C742.1 291.2 739.4 292.0 738 292C737.4 292.1 734.7 292.9 732 294C730.3 295.1 727.8 295.9 727 296C726.1 296.0 724.6 296.6 723 297C722.4 298.1 718.8 299.3 716 300C712.2 300.7 708.6 301.9 708 303C706.4 303.4 704.6 304.0 703 304C702.2 304.0 699.3 304.9 697 306C694.5 307.1 691.3 308.0 690 308C688.3 308.0 684.8 308.9 682 310C679.2 311.1 675.9 312.0 675 312C673.5 312.0 671.2 312.7 670 314C668.0 314.4 663.6 315.5 660 316C656.1 316.6 652.2 317.4 651 318C650.3 318.4 645.5 320.0 640 321C635.5 323.0 629.7 325.0 628 326C625.3 327.1 622.7 328.0 622 328C619.6 328.0 619.5 325.2 621 323C624.2 320.3 628.0 315.2 628 315C628.0 314.2 629.7 311.6 632 309C633.9 305.8 636.0 302.8 636 302C636.7 301.2 638.4 298.5 640 296C641.6 293.5 643.6 290.1 644 288C645.3 286.9 646.9 284.1 648 282C649.7 279.8 653.7 272.5 659 263C660.7 258.9 661.4 257.3 665 250C666.5 247.0 669.6 240.8 672 236C674.1 231.6 676.0 227.4 676 227C676.0 226.3 677.8 222.1 680 217C682.2 212.7 684.0 208.5 684 208C684.0 207.5 684.9 205.1 686 203C691.1 191.4 691.9 189.2 693 186C692.9 183.7 693.8 181.6 695 181C695.4 180.3 696.0 178.9 696 178C696.0 176.8 696.9 174.3 698 172C699.1 170.2 700.0 167.4 700 166C700.0 164.6 700.9 161.8 702 160C703.1 157.7 704.0 155.3 704 154C704.0 153.6 704.9 150.9 706 148C708.5 143.1 708.3 140.6 705 140C704.1 140.0 700.1 143.2 692 151C686.4 156.6 675.2 167.3 668 174C660.0 181.7 652.1 189.1 650 191C648.1 192.9 644.2 196.5 641 199C614.7 222.8 589.9 247.8 580 261C577.0 264.5 574.1 267.9 573 268C572.6 268.7 572.0 269.7 572 270C572.0 271.1 571.2 272.8 570 274C568.0 276.8 562.7 285.9 561 291C558.7 294.6 557.4 295.5 557 293C555.6 290.9 555.9 287.6 558 277C560.5 263.1 563.0 231.2 563 212C563.0 194.0 560.6 161.3 558 149C557.6 144.2 556.5 136.6 556 132C555.6 127.3 554.6 121.0 554 118C552.9 115.0 551.7 110.6 551 108C550.5 105.9 549.5 102.1 549 100C546.5 90.6 542.6 78.4 541 77C540.6 75.4 540.0 73.6 540 72C540.0 70.5 536.1 61.7 531 52C530.1 50.4 529.1 48.4 528 47C527.6 45.5 525.9 43.3 524 42L522 40L519 43C518.1 44.2 516.7 46.6 516 48C516.0 49.4 514.9 52.1 514 54C510.7 60.2 508.2 66.4 507 70C507.1 71.9 506.1 74.4 505 75C504.6 76.6 504.0 78.3 504 79C504.0 80.3 503.3 82.5 502 84C501.6 85.8 500.4 89.9 500 93C499.4 96.5 498.3 100.5 497 102C496.7 103.6 496.0 106.1 496 107C496.0 108.9 495.3 111.7 494 114C493.7 115.7 492.7 119.8 492 123C492.1 126.0 491.1 132.6 490 138C486.2 156.0 484.9 167.1 484 192C482.5 221.0 484.0 265.3 487 276C488.3 283.0 488.2 289.1 486 290C485.6 290.0 484.8 288.9 484 287C484.0 285.8 482.8 283.3 482 282C480.8 280.2 479.1 277.7 478 276C476.9 274.4 476.0 272.8 476 273C476.0 272.0 469.8 263.5 467 260C451.7 242.0 441.0 231.3 407 200C400.1 193.7 392.4 186.5 390 184C387.3 181.5 379.7 174.3 373 168C366.2 161.7 356.6 152.6 352 148C342.5 138.5 341.9 138.2 340 140C338.5 142.3 342.5 157.0 347 164C347.3 165.6 348.0 167.6 348 169C348.0 170.3 351.5 179.9 355 187C355.4 188.4 356.0 190.5 356 191C356.0 192.4 356.9 194.9 358 197C359.1 199.2 360.9 202.8 362 205C363.1 207.1 364.0 209.6 364 210C364.0 211.9 366.0 216.4 370 224C370.9 225.9 372.1 229.0 372 231C372.8 232.5 373.5 234.2 374 234C374.4 234.7 375.9 237.4 377 240C380.4 246.9 384.6 255.4 387 259C387.2 260.4 388.3 262.6 389 264C392.0 270.9 408.6 299.5 410 301C411.3 301.7 412.0 302.9 412 304C412.0 304.4 413.8 307.3 416 310C418.1 312.8 420.2 315.9 421 317C420.9 318.1 421.6 319.0 422 319C422.6 319.0 423.5 320.1 424 322C424.5 322.9 425.4 324.0 426 324C426.5 324.0 427.0 324.9 427 326C427.0 328.5 425.3 328.5 422 326C419.9 324.9 417.6 324.0 417 324C415.4 324.0 412.3 323.2 410 322C400.6 318.8 393.6 316.7 387 315C383.4 314.7 377.4 313.2 374 312C369.6 310.8 363.1 309.0 359 308C351.4 306.2 348.4 305.2 340 302C337.2 300.8 334.1 300.0 333 300C331.5 300.0 328.7 299.1 326 298C324.3 296.9 322.0 296.0 321 296C320.6 296.0 318.3 295.1 316 294C314.2 292.9 311.7 292.0 311 292C308.9 292.0 302.0 289.4 294 286C292.1 284.9 289.4 284.0 288 284C287.4 284.0 285.1 283.1 284 282C280.4 280.0 274.5 279.3 274 281C271.5 284.3 299.4 314.5 324 336C327.8 338.8 331.2 341.7 332 342C335.5 345.4 349.7 355.6 352 357C353.4 357.4 356.6 359.4 359 361C365.6 365.8 373.1 370.3 376 371C377.4 371.9 379.6 373.1 381 374C382.2 375.2 383.9 376.0 385 376C385.5 376.0 387.3 376.9 389 378C390.1 379.1 392.0 380.0 393 380C393.8 380.0 395.8 380.7 397 382C402.4 384.1 412.5 388.0 414 388C415.2 388.0 418.4 389.0 421 390C427.6 392.7 428.4 395.0 423 396C421.8 396.4 419.1 397.5 418 398C415.9 399.3 414.0 400.0 413 400C412.8 400.0 411.7 400.6 411 401C410.4 402.2 408.4 403.2 407 404C404.9 403.9 402.6 404.8 402 405C400.4 406.1 397.8 407.2 396 408C391.2 409.4 390.6 412.6 395 414C398.9 414.7 444.1 411.7 448 410C449.8 409.5 454.0 408.8 458 408C461.5 408.1 466.8 407.2 470 406C472.5 405.6 484.7 404.3 497 404C526.9 401.4 551.2 402.9 594 410C599.2 410.4 610.2 411.5 618 412C626.8 412.5 636.9 413.4 641 414C649.0 415.1 653.5 415.6 656 416C657.0 415.9 658.3 415.4 659 415ZM442 382C438.6 380.9 434.4 380.0 433 380C430.2 380.0 416.7 375.6 413 373C411.4 372.7 409.3 372.0 408 372C407.1 372.0 402.6 370.2 398 368C394.0 366.0 389.4 363.7 388 363C385.2 361.9 382.7 360.4 379 358C377.8 356.8 376.0 356.0 375 356C374.1 356.0 372.5 355.1 372 354C370.5 352.9 369.2 352.0 368 352C367.8 352.0 366.5 351.1 366 350C364.5 348.9 363.1 348.0 362 348C361.8 348.0 359.0 346.2 356 344C353.5 341.8 350.8 340.0 350 340C349.8 340.0 348.8 339.2 348 338C347.1 337.3 345.1 335.6 344 334C339.2 331.4 328.8 322.9 325 320C323.6 317.9 320.7 315.3 319 314C313.6 309.1 316.5 306.2 323 310C324.6 311.1 327.1 312.0 328 312C329.5 312.0 331.4 312.6 333 313C333.6 314.1 337.2 315.3 340 316C343.7 316.7 347.8 317.8 349 319C353.4 320.2 365.2 323.5 372 325C374.2 325.3 377.9 326.2 380 327C386.8 329.4 396.7 332.0 399 332C401.0 332.0 404.9 333.4 417 339C429.2 343.7 440.8 353.9 455 372C460.6 378.6 461.0 380.2 458 382C454.9 384.5 451.2 384.3 442 382ZM589 383C587.1 381.8 588.2 378.1 591 375C592.7 373.0 595.2 369.9 596 368C599.0 364.2 614.7 348.0 616 348C616.4 348.0 617.9 346.9 619 346C621.8 343.3 636.0 336.0 638 336C638.6 336.0 640.7 335.1 643 334C644.8 332.9 647.6 332.0 649 332C651.4 332.0 659.1 330.0 672 326C674.8 324.9 678.7 324.0 680 324C681.7 324.0 685.3 323.1 688 322C691.1 320.9 694.4 320.0 696 320C696.6 320.0 698.5 319.4 700 319C700.7 317.8 704.1 316.7 707 316C710.4 315.5 714.3 314.4 716 314C717.6 312.7 719.6 312.0 720 312C721.3 312.0 723.7 311.1 726 310C729.4 308.1 733.0 308.1 733 310C733.0 310.4 729.8 313.6 726 317C722.0 320.6 717.2 325.0 715 327C710.5 331.1 687.4 348.0 686 348C685.7 348.0 684.7 348.7 684 350C683.2 350.4 681.3 351.8 680 353C675.7 354.5 670.3 357.5 666 360C664.9 361.1 662.4 362.5 661 363C659.6 363.7 654.8 366.0 650 368C645.7 370.2 641.3 372.0 640 372C639.6 372.0 637.9 372.5 637 373C632.6 375.4 618.5 380.0 616 380C614.5 380.0 610.0 380.9 606 382C598.6 383.9 589.9 384.6 589 383ZM551 371C548.0 369.7 547.6 366.6 550 359C551.1 355.9 552.9 350.2 554 347C555.1 343.3 556.0 339.4 556 338C556.1 336.6 556.9 333.7 558 332C559.1 329.3 560.0 326.8 560 326C560.0 325.2 560.7 323.2 562 322C562.4 319.9 563.6 316.4 564 314C564.7 311.2 565.8 308.6 567 308C567.4 307.3 568.0 306.0 568 305C568.0 304.1 568.9 302.1 570 301C571.1 299.3 572.0 297.5 572 297C572.0 295.9 572.8 294.2 574 293C574.8 291.6 576.1 289.4 577 288C584.3 272.7 610.4 244.8 656 203C660.3 199.3 665.5 194.5 668 192C674.0 186.3 676.8 184.0 678 184C679.3 184.0 679.3 186.7 678 187C677.6 187.8 676.8 189.5 676 191C676.1 193.0 674.0 198.2 672 203C669.7 207.4 668.0 211.6 668 212C668.0 212.8 666.2 216.9 664 221C661.9 225.8 659.8 230.7 659 232C659.1 233.8 658.4 235.2 658 235C657.6 235.7 656.0 238.6 655 242C653.0 244.9 651.2 248.6 650 250C649.8 251.4 647.5 255.7 646 260C643.6 263.4 641.5 267.2 641 268C639.4 270.6 628.5 289.5 628 290C627.7 291.1 626.1 293.5 624 296C622.9 298.3 620.6 301.8 620 304C616.8 308.2 612.4 314.4 607 321C604.9 324.0 602.7 327.0 602 328C599.6 331.1 581.6 351.2 578 354C577.5 354.9 567.1 363.8 564 366C557.1 372.1 555.5 372.7 551 371ZM488 370C484.1 366.6 480.8 364.0 480 364C478.9 364.0 452.0 337.4 452 336C452.0 335.8 450.3 333.6 448 331C446.2 329.0 442.5 324.3 440 321C437.5 317.7 433.8 312.7 432 310C429.7 307.3 428.0 304.6 428 304C428.0 303.6 427.4 302.5 427 302C424.3 299.3 418.0 289.5 416 285C415.5 284.0 414.6 283.0 414 283C413.6 283.0 412.9 281.8 413 280C412.2 279.0 411.1 276.6 410 275C407.6 271.2 406.5 269.2 402 261C400.1 256.9 397.9 252.6 397 252C396.7 250.4 395.7 248.4 395 247C394.5 245.6 392.6 242.0 391 239C389.3 236.0 388.0 232.8 388 232C388.0 231.0 387.1 229.1 386 228C384.9 226.3 384.0 224.6 384 224C384.0 223.1 383.1 221.2 382 220C380.9 217.8 380.0 216.0 380 215C380.0 214.7 378.2 210.3 376 206C373.8 200.9 372.0 196.5 372 196C372.0 195.0 371.1 192.7 370 190C365.5 181.7 368.3 181.4 377 190C381.0 193.4 386.1 198.3 388 200C390.8 202.7 397.8 209.2 404 215C427.0 236.2 456.1 266.1 459 272C459.9 272.8 461.8 275.3 464 278C469.6 285.2 484.0 313.6 484 318C484.0 318.8 484.7 320.9 486 322C486.5 324.1 487.6 327.1 488 329C488.5 330.9 489.5 334.5 490 337C491.9 341.7 493.3 346.7 495 356C496.1 359.1 497.3 362.6 498 364C500.8 368.1 491.3 373.6 488 370ZM521 355C520.3 355.0 520.0 353.8 520 353C520.0 351.8 519.1 349.3 518 347C516.9 345.2 516.0 342.6 516 342C516.0 340.4 515.1 337.5 514 335C512.9 332.7 512.0 330.0 512 329C511.9 328.2 511.1 325.7 510 324C508.9 321.3 508.1 318.4 508 317C508.0 315.6 507.1 311.4 506 308C502.3 293.6 501.1 287.2 499 270C498.3 264.0 497.4 257.0 497 254C496.5 251.0 496.1 244.1 496 239C496.0 228.0 497.1 226.1 501 230C504.9 233.9 516.3 233.8 521 230C528.4 223.2 530.0 214.4 525 206C519.9 196.3 508.2 194.1 500 201C496.3 204.9 495.6 202.8 496 189C496.7 182.7 497.4 175.2 498 173C498.4 170.5 499.4 162.9 500 156C500.6 149.2 501.7 141.3 502 139C504.0 132.9 505.6 125.4 507 116C507.7 113.2 509.0 107.8 510 104C511.1 101.1 512.0 97.7 512 97C512.0 96.1 512.6 94.3 513 93C514.2 91.3 515.4 87.5 516 84C516.7 81.1 517.7 77.9 518 77C518.8 76.6 519.6 74.5 520 73C520.7 68.8 523.5 68.4 525 72C528.5 77.5 532.0 86.0 532 88C532.0 89.0 532.9 92.2 534 95C535.1 97.8 536.0 100.8 536 102C536.0 102.7 536.7 104.8 537 106C538.3 107.8 539.4 112.5 540 117C540.6 121.0 541.7 126.7 543 129C543.3 132.1 544.0 136.0 544 138C544.0 140.0 544.7 143.9 546 147C548.9 157.5 550.0 242.9 547 266C545.8 276.2 544.1 286.7 542 296C541.0 301.4 539.9 307.9 540 311C539.2 313.8 538.5 316.9 538 318C537.5 318.8 536.4 322.1 536 325C531.8 339.2 530.8 342.7 530 346C528.8 347.1 527.9 349.6 527 351C526.2 355.4 522.9 357.5 521 355ZM506 224C498.2 219.1 498.2 210.9 506 206C510.7 203.3 513.2 203.5 517 207C522.8 211.9 522.2 220.1 516 224C511.7 226.5 510.3 226.5 506 224Z\"/></svg>";
 const LR=975/652;
@@ -1640,7 +1862,9 @@ function pairHTML(){
   return `<section class="panel fade" style="--i:4" aria-labelledby="h-pair">${idx(5)}
     <p class="eyebrow">MATCH</p>
     <h2 id="h-pair">靈數配對</h2>
-    <p class="sub">輸入另一半、曖昧對象或好朋友的生日，看看你們的數字合不合。</p>
+    <p class="sub">先看看你跟 1～9 號人合不合，再輸入另一半、曖昧對象或好朋友的生日，看你們的完整配對。</p>
+    ${matchHTML()}
+    <div class="orn">輸入對方生日・看完整配對</div>
     <form class="pair" id="pf" novalidate>
       <div class="r3">
         <label>對方出生年<input id="py" type="number" inputmode="numeric" min="1920" max="${THIS_Y}" placeholder="西元年"></label>
@@ -1836,6 +2060,7 @@ R.addEventListener('click',async e=>{
   if(b.dataset.pick) openEditor(b.dataset.pick);
   if(b.id==='take') openEditor(S.style);
   if(b.dataset.style){S.style=b.dataset.style;syncPh();R.querySelectorAll('[data-style]').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));$('#flip').classList.remove('back');await renderCards();}
+  if(b.dataset.ebook){const y=+b.dataset.ebook,m=$('#ebmsg');b.disabled=true;m.className='dlmsg';m.textContent='電子書製作中…';try{await document.fonts.ready;const cs=await ebookPages(y,b.dataset.prem==='1');await saveFile(`Tequila_${y}流年電子書_${S.life}號人.pdf`,ebookPDF(cs),'#ebmsg');}catch(err){m.className='dlmsg no';m.textContent='製作失敗，請再試一次。';}b.disabled=false;}
   if(b.dataset.theme){BIZ_THEME=b.dataset.theme;syncPh();$('#flip').classList.remove('back');await renderCards();}
   if(b.dataset.ph==='num'){ID_PHOTO=null;$('#cphoto').value='';syncPh();await renderCards();}
   if(b.id==='flip'){const bk=b.classList.toggle('back');b.setAttribute('aria-label',bk?'翻面，目前是背面':'翻面，目前是正面');}
@@ -2031,6 +2256,56 @@ const CAREER={
  9:{att:'你工作需要意義感，想知道自己做的事能不能讓世界更好。在能助人、能創作的環境裡，你會非常投入。',style:'你適合當療癒者和啟發者：教學、創作、助人。最怕的是只顧理想、忽略現實，或是把所有人的問題都攬到自己身上。',trap:'不切實際、太理想化；不好意思收錢，常常做白工。',money:'對錢比較不執著，賺錢的動力來自理想。容易捐出去或借出去，自己卻存不到錢。',tip:['先替自己存一筆，再決定要幫多少人','替自己的專業好好定價，收錢不代表不善良','把助人變成可以長期經營的事業'],roles:[['公益與非營利組織','能把理想化為行動，幫助更多人'],['藝術家','情感豐沛，作品能打動人心'],['療癒師與身心靈工作','溫柔包容，能接住別人的痛'],['教育者','願意傳承，啟發下一代'],['國際事務與志工','心胸寬大，喜歡跨越文化的連結'],['作家與影像創作者','能用故事讓人看見世界的另一面']]}
 };
 
+/* ---------- 45 組配對（a-b，a≤b）：[稱號, 星等, 化學反應, 甜蜜點, 容易卡關] ---------- */
+const P45={
+'1-1':['雙火車頭',3,'兩個都想帶頭、都想第一個衝出去，熱情一點就燃。','一起做決定超快，挑戰再大也不怕，是彼此最好的戰友。','誰都不想聽誰的，吵起來像兩台車對撞，記得輪流握方向盤。'],
+'1-2':['領航與守護',4,'1 號往前衝，2 號在旁邊補位，一個給方向、一個給溫度。','2 號讓 1 號覺得被支持，1 號讓 2 號不必一個人做決定。','1 號太急會忽略 2 號的感受，2 號沒說出口的委屈會越積越多。'],
+'1-3':['點子發電機',5,'一個敢做、一個敢說，在一起總有新計畫、新話題。','3 號的創意給 1 號靈感，1 號的行動力讓 3 號的點子成真。','兩個人都容易衝動、三分鐘熱度，需要有人負責收尾。'],
+'1-4':['油門與煞車',2,'1 號要快、4 號要穩，節奏差很多，卻也能互相修正。','4 號替 1 號把關細節，1 號帶 4 號跨出舒適圈。','1 號嫌 4 號太慢太保守，4 號嫌 1 號太衝不顧後果，常為了步調吵架。'],
+'1-5':['說走就走',5,'都愛自由、愛新鮮，一拍即合，人生像一場冒險。','一起嘗試新事物不用說服對方，相處輕鬆不黏膩。','兩個人都不愛被綁，承諾和現實問題容易一拖再拖。'],
+'1-6':['英雄與家',3,'1 號在外面闖，6 號把家顧好，各自擅長的地方不同。','6 號讓 1 號有地方回來，1 號替 6 號擋掉外面的風雨。','6 號想被重視，1 號卻常常忙自己的事，付出不對等時容易失衡。'],
+'1-7':['獨立的兩座島',3,'都很獨立、需要自己的空間，互相欣賞卻不太靠近。','不會互相干涉，聊起想法很有收穫，是精神上的好朋友。','一個太直接、一個太安靜，心事都不說，距離會越拉越遠。'],
+'1-8':['強強聯手',4,'兩個都有野心、都想成功，目標一致時是最強搭檔。','一起拚事業、做計畫效率超高，彼此都欣賞對方的能力。','都想當老大，誰負責哪一塊沒先說好，就會變成誰也不服誰。'],
+'1-9':['開路人與引路人',4,'1 號往前衝，9 號看得遠，一個行動、一個有理想。','9 號給 1 號更大的格局，1 號幫 9 號把理想變成行動。','1 號在意自己的目標，9 號在意大家，價值排序不同時會有摩擦。'],
+'2-2':['溫柔的回音',4,'都很敏感細膩，懂得對方的情緒，相處很溫暖。','不用多說就知道對方需要什麼，是很有安全感的陪伴。','兩個人都不想先開口，有心事就一起悶著，需要有人先說出來。'],
+'2-3':['聽眾與舞台',4,'3 號愛說，2 號會聽，一個帶來歡樂、一個給出溫柔。','3 號讓 2 號放鬆、笑出來，2 號讓 3 號覺得被好好聽見。','3 號太愛熱鬧，2 號會覺得被冷落；2 號太敏感，3 號會覺得動輒得咎。'],
+'2-4':['細水長流',5,'都重視穩定和承諾，一步一步把日子過好。','彼此可靠、說到做到，是最能走長久的組合之一。','兩個人都保守，生活容易太平淡，偶爾要替關係加一點驚喜。'],
+'2-5':['港口與帆船',2,'2 號想要陪伴，5 號想要自由，需求剛好相反。','5 號帶 2 號看見更大的世界，2 號讓 5 號知道有人等他回家。','2 號覺得不安、5 號覺得被綁，一個追一個逃，需要很多溝通。'],
+'2-6':['互相照顧的兩個人',5,'都很會照顧人，彼此體貼、暖心，像家人一樣。','在一起很有安全感，願意為對方付出，也懂得感謝。','兩個人都習慣先顧對方，忘了說出自己的需要，累了也不講。'],
+'2-7':['安靜的陪伴',3,'都不愛吵鬧，喜歡安靜相處，有一種不用說話的默契。','7 號帶 2 號把事情看得更深，2 號讓 7 號感受到被包容的溫柔。','2 號需要回應，7 號需要獨處，冷處理會讓 2 號很受傷。'],
+'2-8':['軍師與將軍',4,'8 號衝目標，2 號在背後支援，分工很清楚。','8 號給 2 號安全感，2 號讓 8 號拚完有地方放鬆。','8 號太強勢會忽略 2 號的意見，2 號不說出口，久了會覺得委屈。'],
+'2-9':['溫柔的同理心',4,'都很有同理心，懂得體諒別人，相處起來很柔軟。','一起照顧身邊的人、做有意義的事，彼此都覺得被理解。','兩個人都替別人想太多，把自己的事擺最後，誰也不提醒誰。'],
+'3-3':['派對永不結束',3,'兩個開心果在一起，話題永遠聊不完，笑聲不斷。','生活充滿樂趣，一起出去玩、一起創作都很有火花。','都怕無聊、都不愛處理現實，錢和責任需要有人扛起來。'],
+'3-4':['創意與藍圖',2,'3 號天馬行空，4 號按部就班，一個想得多、一個做得實。','4 號幫 3 號把點子落地，3 號讓 4 號的生活多一點顏色。','4 號覺得 3 號不可靠，3 號覺得 4 號太無趣，容易互相看不順眼。'],
+'3-5':['玩伴型戀人',5,'愛玩又好奇，一起出門最有趣，永遠有新鮮事。','相處輕鬆好玩，不會無聊，是彼此最好的玩伴。','遇到現實問題時兩個人都想逃，需要有人踩煞車。'],
+'3-6':['浪漫與溫暖',5,'3 號給歡樂，6 號給照顧，是很甜的組合。','6 號欣賞 3 號的才華，3 號讓 6 號覺得被愛、被逗笑。','6 號想要承諾，3 號想要自由，6 號管太多時 3 號會想躲。'],
+'3-7':['說與想',3,'3 號愛表達，7 號愛思考，一個外放、一個內斂。','7 號讓 3 號的想法更有深度，3 號讓 7 號多笑一點、多說一點。','3 號嫌 7 號太悶，7 號嫌 3 號太吵，社交需求差很多。'],
+'3-8':['舞台與票房',4,'3 號有創意和人氣，8 號有策略和資源，合作起來很有成績。','8 號幫 3 號把才華變成收入，3 號讓 8 號的生活不只有工作。','8 號重結果、3 號重感覺，談到錢和效率時容易意見不合。'],
+'3-9':['藝術家靈魂',5,'都感性、有創造力，對美和理想有共同的嚮往。','聊天很有共鳴，一起看展、創作、聊人生都很契合。','兩個人都靠感覺生活，帳單和計畫容易被放一邊。'],
+'4-4':['穩穩的地基',4,'兩個踏實的人在一起，生活規律、計畫清楚。','彼此信任、說到做到，存錢買房這種長期目標最有效率。','都很固執、都不愛變化，意見不同時誰也不讓，日子也容易太平淡。'],
+'4-5':['規律與自由',2,'一個要穩定、一個要自由，差異很大，卻也正好補足彼此缺的那塊。','4 號讓 5 號有安定的基地，5 號帶 4 號體驗不同的生活。','4 號受不了 5 號臨時改計畫，5 號受不了 4 號什麼都要排好。'],
+'4-6':['理想的家',5,'都重視家庭和責任，一起打造穩定溫暖的生活。','一個顧實際、一個顧感情，是很適合成家的組合。','兩個人都太認真，忘了放鬆和玩樂，壓力累積了要記得說。'],
+'4-7':['實驗室搭檔',4,'都喜歡把事情想清楚、做扎實，不愛表面功夫。','彼此尊重空間，一起研究、學習很有默契。','兩個人都不擅長表達感情，關係容易變得像同事。'],
+'4-8':['事業合夥人',5,'都務實、有目標，一起打拚很有安全感。','金錢觀和價值觀接近，一起規劃未來最有效率。','太專注工作和目標，容易忘了談感情，要刻意留時間給彼此。'],
+'4-9':['腳踏實地的理想',3,'4 號重現實，9 號重理想，看事情的角度不同。','9 號讓 4 號看見更大的意義，4 號幫 9 號把夢想一步步實現。','4 號覺得 9 號不切實際，9 號覺得 4 號太計較，需要互相翻譯。'],
+'5-5':['兩陣風',3,'都愛自由、愛冒險，在一起永遠不無聊。','不會互相綁住，一起旅行、嘗試新事物超開心。','都不愛承諾、都怕被管，關係容易飄忽不定，需要有人先定下來。'],
+'5-6':['自由與牽掛',2,'5 號想往外飛，6 號想守著家，需求差很多。','6 號給 5 號溫暖的歸屬感，5 號讓 6 號學會放手和放鬆。','6 號的關心在 5 號眼裡像控制，5 號的自由在 6 號眼裡像不在乎。'],
+'5-7':['旅人與哲學家',4,'一個探索世界、一個探索內心，都對未知充滿好奇。','彼此尊重空間不黏膩，聊起見聞和想法很有火花。','兩個人都不顧日常瑣事、也都不愛表態，關係容易停在曖昧。'],
+'5-8':['冒險與資本',3,'5 號敢嘗試，8 號會規劃，一個找機會、一個抓機會。','5 號帶來新點子和人脈，8 號把它變成實際的成果。','8 號想掌控，5 號討厭被管，主導權沒說清楚會一直拉扯。'],
+'5-9':['環遊世界',4,'都心胸開闊、愛看世界，對生活有很大的想像。','一起旅行、聊夢想很合拍，彼此包容對方的不同。','5 號重自己的感受，9 號重大家的需要，付出的方向不同時會失望。'],
+'6-6':['雙倍的愛',4,'兩個很會照顧人的人在一起，關係很溫暖。','彼此珍惜、願意為家付出，是很有家庭感的組合。','都想照顧對方，也都想被肯定，容易變成比誰付出比較多。'],
+'6-7':['照顧與空間',2,'6 號想靠近，7 號需要距離，愛的方式很不一樣。','6 號讓 7 號感受到溫暖，7 號讓 6 號學會照顧自己的內心。','6 號關心太多會讓 7 號窒息，7 號的冷靜會讓 6 號覺得不被愛。'],
+'6-8':['家與事業',4,'8 號在外打拚，6 號照顧後方，分工明確又互相支持。','8 號給 6 號物質上的安全感，6 號給 8 號情感上的避風港。','8 號太忙忽略了家，6 號覺得付出沒被看見時，委屈會爆發。'],
+'6-9':['大愛的組合',5,'都充滿愛心、願意付出，對人對世界都很溫柔。','價值觀接近，一起照顧家人朋友，關係很有溫度。','兩個人都把別人放前面，常常忘了照顧自己和這段關係。'],
+'7-7':['兩個宇宙',3,'都需要獨處、都愛思考，彼此懂對方的安靜。','不用解釋也被理解，聊到深處可以聊到天亮。','兩個人都不主動、都藏心事，關係容易停在原地，需要有人先開口。'],
+'7-8':['智者與戰略家',3,'7 號看得深，8 號做得狠，一個分析、一個執行。','7 號的洞察讓 8 號少走冤枉路，8 號幫 7 號把想法變成成果。','8 號重成果和金錢，7 號重意義和真相，價值觀不同時會互相看不起。'],
+'7-9':['靈魂伴侶',5,'都有靈魂深度，很容易覺得找到懂自己的人。','精神上很契合，彼此尊重、互相啟發，聊天可以聊到天亮。','兩個人都活在自己的世界裡，記得也要一起過好日常。'],
+'8-8':['雙王',3,'兩個都很有野心和主見，在一起能量很強。','一起拚目標效率驚人，互相欣賞對方的能力和魄力。','誰都不想退讓，爭主導權時會很激烈，記得你們是隊友不是對手。'],
+'8-9':['現實與理想',3,'8 號重成就，9 號重意義，看待成功的方式不同。','9 號提醒 8 號別忘了初衷，8 號幫 9 號把理想做大。','8 號覺得 9 號太天真，9 號覺得 8 號太現實，金錢觀容易衝突。'],
+'9-9':['兩個老靈魂',4,'都很包容、有大愛，彼此懂對方的理想和溫柔。','相處很柔軟，一起做有意義的事會很有成就感。','兩個人都替世界操心，卻忘了照顧自己，情緒一起低落時沒人拉一把。']
+};
+function P(a,b){const r=P45[Math.min(a,b)+'-'+Math.max(a,b)];return {t:r[0],s:r[1],chem:r[2],sweet:r[3],rub:r[4]};}
+
 
 /* ---------- 九宮格：有的數 ---------- */
 const HAVE={
@@ -2139,7 +2414,9 @@ function yearBody(y,prem){
       ${monthDetail(y,sel,spm)}
       <p class="howto">流年數＝出生月日＋該年份的數字相加；流月數＝流年數＋月份。以國曆年計算。</p>`;
   
+  body+=`<div class="ebk"><div class="ebt"><b>帶走 ${y} 流年電子書</b><small>${prem?'含運勢書限定內容・':''}流年怎麼算、整年主題、12 個月節奏，A5 PDF</small></div><button type="button" class="ebbtn" data-ebook="${y}" data-prem="${prem?1:0}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>下載電子書 PDF</button><p class="dlmsg" id="ebmsg" aria-live="polite"></p></div>`;
   if(prem) body=`<p class="okbar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>已解鎖 ${y} 靈數運勢書</p>`+body+`<div class="orn">運勢書限定內容</div>`+y27Extra(py,y);
+  if(prem){const i=body.indexOf('<div class="ebk">'),j=body.indexOf('</p></div>',i)+10;const blk=body.slice(i,j);body=body.slice(0,i)+body.slice(j)+blk;}
   return body;
 }
 function yearHTML(){
@@ -2320,10 +2597,25 @@ const LOVEH={
 const FIGHT={same:'你們太像了，吵架時常常卡在同一個地方。先停下來，提醒自己：對方現在跟你一樣難受。',mind:'你們都需要時間想清楚。不用急著當下吵完，約好「各自冷靜十分鐘」，再回來好好談。',earth:'你們都習慣先把事情處理好，感受放最後。吵完記得補一句「我們還是一起的」，這比誰對誰錯更重要。',heart:'情緒上來的時候，先抱一下，再說話。對你們來說，先被接住，才聽得進道理。','mind-earth':'一個想聊各種可能，一個只想知道接下來怎麼做。先聽完對方的版本，再一起找中間的路。','mind-heart':'感性的那一方需要先被理解，理性的那一方需要一點時間。先說「我知道你很難過」，再說你的想法。','earth-heart':'一個用行動愛人，一個需要聽到愛。吵完之後，行動派多說一句「我在乎你」，感性的那方也記得看見對方默默做的事。'};
 const PRACT={same:'一起列出「我們都有的壞習慣」，笑一笑，再各選一個互相提醒。',mind:'安排一次不聊工作、只聊奇怪問題的深夜長談，例如「如果明天世界末日你想做什麼」。',earth:'一起規劃一件「不實用但很開心」的小事，例如一頓有點貴的早午餐。',heart:'寫一張小紙條給對方，說一件最近被他感動的事，偷偷塞進他的包包。','mind-earth':'輪流當一天的「導遊」：一個負責出點子，一個負責排行程。','mind-heart':'試試「三分鐘不打斷」：一個人說三分鐘心裡話，另一個人只聽、不給建議。','earth-heart':'每天睡前說一句「謝謝你今天……」，把對方默默做的事說出來。'};
 const PSPEC={'1-8':'兩個人都想當老大，方向一致時是最強搭檔；方向不同時，先說好誰負責哪一塊。','2-6':'都很會照顧人、彼此暖心，但要小心兩個人都不說出自己的需要。','3-5':'愛玩又好奇，一起出門最有趣；遇到現實問題時，需要有人踩煞車。','4-5':'一個要穩定、一個要自由，差異很大，卻也正好補足彼此缺的那塊。','7-9':'都有靈魂深度，聊天可以聊到天亮；記得也要一起過好日常。'};
+function pairKey(a,b){const ga=GROUP[a],gb=GROUP[b];return a===b?'same':ga===gb?ga:[ga,gb].sort((x,y)=>['mind','earth','heart'].indexOf(x)-['mind','earth','heart'].indexOf(y)).join('-');}
+function matchHTML(){
+  const a=S.life;
+  const btns=[1,2,3,4,5,6,7,8,9].map(m=>{const s=P(a,m).s,sel=m===a;return `<button type="button" role="tab" id="tb-mt-${m}" aria-controls="tp-mt-${m}" data-tab="mt:${m}" aria-selected="${sel}" tabindex="${sel?0:-1}" style="--c:${LUCK[m].hex};--fg:${LUCK[m].fg}" aria-label="${m} 號人，契合度 ${s} 顆星"><b>${m}</b><i>${s}★</i></button>`;}).join('');
+  const pans=[1,2,3,4,5,6,7,8,9].map(m=>{const G=P(a,m),sp='',La=LUCK[a],Lm=LUCK[m];
+    const orb=(n,L)=>`<span class="porb" style="--c:${L.hex};--fg:${L.fg}">${n}</span>`;
+    return `<div role="tabpanel" id="tp-mt-${m}" aria-labelledby="tb-mt-${m}" tabindex="0" data-panel="mt:${m}"${m===a?'':' hidden'}><div class="mtc" style="--c:${Lm.hex}">
+      <div class="mth"><div class="porbs">${orb(a,La)}<span class="pop heart">&amp;</span>${orb(m,Lm)}</div>
+        <div><small>你 × ${m} 號人・${N[m].t}</small><b>「${G.t}」</b><span class="st">${'★'.repeat(G.s)}${'☆'.repeat(5-G.s)}</span></div></div>
+      <p>${G.chem}</p>${sp?`<p class="note2">＊${sp}</p>`:''}
+      <div class="two yj"><div class="yes"><h3 class="h4">甜蜜點</h3><p>${G.sweet}</p></div><div class="no"><h3 class="h4">容易卡關</h3><p>${G.rub}</p></div></div>
+      <div class="mtip"><span class="ti" style="--c:${Lm.hex};--fg:${Lm.fg}">${m}</span><div><b>跟 ${m} 號人相處</b><p>${LOVEH[m].care}</p></div></div>
+    </div></div>`;}).join('');
+  return `<div class="mtwrap"><p class="lh">你是 ${a} 號人・點數字看你跟每一號的契合度</p><div class="numtabs" role="tablist" aria-label="選擇對方的號碼">${btns}</div>${pans}</div>`;
+}
 function pairResult(a,b,bChain){
   const ga=GROUP[a],gb=GROUP[b];
   const key=a===b?'same':ga===gb?ga:[ga,gb].sort((x,y)=>['mind','earth','heart'].indexOf(x)-['mind','earth','heart'].indexOf(y)).join('-');
-  const G=GPAIR[key],sp=PSPEC[[Math.min(a,b),Math.max(a,b)].join('-')];
+  const G=P(a,b),sp='';
   const A=LOVEX[a],B=LOVEX[b],La=LUCK[a],Lb=LUCK[b];
   const stars='★'.repeat(G.s)+'☆'.repeat(5-G.s);
   const orb=(n,L,big)=>`<span class="porb${big?' big':''}" style="--c:${L.hex};--fg:${L.fg}">${n}</span>`;
@@ -2464,28 +2756,44 @@ function redeem(v){
 
 if(Y27_LIVE){const sm=document.querySelector('.two-l small');if(sm)sm.textContent='買運勢書';}
 
-/* ---------- 彩蛋：乾一杯 ---------- */
+/* ---------- 彩蛋：乾一杯（龍舌蘭杯＋鹽巴＋玻璃敲擊聲） ---------- */
 (function(){
-  const b=$('#cheers'),tx=$('#ctext'),orig=tx.innerHTML;let busy=false;
-  function burst(){
+  const b=$('#cheers'),tx=$('#ctext'),orig=tx.innerHTML;let busy=false,AC=null;
+  const HIT1=.385,HIT2=.66; // 對應 clink 動畫 35%、60% 的碰杯時刻（1.1s）
+  function clinkSound(){
+    try{
+      AC=AC||new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();
+      const hit=(t0,g)=>{
+        [[2380,1,1.5],[3910,.55,1.1],[5480,.32,.8],[7350,.16,.5],[2960,.25,1.2]].forEach(([f,a,d])=>{
+          const o=AC.createOscillator(),v=AC.createGain();o.type='sine';o.frequency.value=f*(1+(Math.random()-.5)*.006);
+          v.gain.setValueAtTime(0,t0);v.gain.linearRampToValueAtTime(a*g*.2,t0+.003);v.gain.exponentialRampToValueAtTime(.0001,t0+d);
+          o.connect(v).connect(AC.destination);o.start(t0);o.stop(t0+d+.05);});
+        const len=Math.floor(AC.sampleRate*.025),buf=AC.createBuffer(1,len,AC.sampleRate),dd=buf.getChannelData(0);
+        for(let i=0;i<len;i++)dd[i]=(Math.random()*2-1)*Math.pow(1-i/len,3);
+        const src=AC.createBufferSource(),hp=AC.createBiquadFilter(),gv=AC.createGain();src.buffer=buf;hp.type='highpass';hp.frequency.value=3500;gv.gain.value=.22*g;
+        src.connect(hp).connect(gv).connect(AC.destination);src.start(t0);
+      };
+      const t=AC.currentTime;hit(t+HIT1,1);hit(t+HIT2,.4);
+    }catch(e){}
+  }
+  function salt(){
     const bb=b.getBoundingClientRect(),sv=b.querySelector('svg').getBoundingClientRect();
-    const cx=sv.left-bb.left+sv.width/2,cy=sv.top-bb.top+sv.height*.27;
-    for(let i=0;i<18;i++){
-      const p=document.createElement('i');p.className='pt';p.style.left=cx+'px';p.style.top=cy+'px';b.appendChild(p);
-      const a=Math.random()*Math.PI*2,r=34+Math.random()*56;
-      p.animate([{transform:'translate(-50%,-50%) scale(1)',opacity:1},
-        {transform:`translate(calc(-50% + ${Math.cos(a)*r}px),calc(-50% + ${Math.sin(a)*r-16}px)) scale(.2)`,opacity:0}],
-        {duration:700+Math.random()*500,delay:340,easing:'cubic-bezier(.2,.7,.3,1)',fill:'both'}).onfinish=()=>p.remove();
+    const cx=sv.left-bb.left+sv.width/2,cy=sv.top-bb.top+sv.height*.2;
+    for(let i=0;i<30;i++){
+      const p=document.createElement('i');p.className=i<6?'pt':'salt';p.style.left=cx+'px';p.style.top=cy+'px';b.appendChild(p);
+      const dir=(Math.random()-.5)*2,vx=dir*(20+Math.random()*50),up=-(10+Math.random()*26),fall=60+Math.random()*70,rot=Math.random()*360;
+      const kf=[0,.2,.45,.7,1].map(k=>({transform:`translate(calc(-50% + ${vx*k}px),calc(-50% + ${up*4*k*(1-k)+fall*k*k}px)) rotate(${rot*k}deg) scale(${i<6?1-k*.8:1-k*.3})`,opacity:k<.7?1:1-(k-.7)/.3}));
+      p.animate(kf,{duration:900+Math.random()*600,delay:HIT1*1000-20,easing:'linear',fill:'both'}).onfinish=()=>p.remove();
     }
   }
   b.addEventListener('click',()=>{
     if(busy) return;busy=true;
+    clinkSound();
     tx.textContent=S?`叮！敬 ${S.life} 號人！`:'叮！乾杯！';
-    if(!reduce){b.classList.remove('on');void b.offsetWidth;b.classList.add('on');burst();}
-    setTimeout(()=>{tx.innerHTML=orig;b.classList.remove('on');busy=false;},reduce?1400:2000);
+    if(!reduce){b.classList.remove('on');void b.offsetWidth;b.classList.add('on');salt();}
+    setTimeout(()=>{tx.innerHTML=orig;b.classList.remove('on');busy=false;},reduce?1400:2200);
   });
 })();
-
 
 </script>
 </body>
